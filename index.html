@@ -192,6 +192,10 @@ Completá el asistente interactivo para elegir tu instrumento, modalidad y horar
 <option value="Presencial">Presencial (La Paz)</option>
 <option value="Online">Online (Virtual en vivo)</option>
 </select>
+<div id="avisoTeclado" class="hidden mt-3 flex items-start gap-2 bg-musicalPink/10 border border-musicalPink/30 rounded-xl p-3 text-xs text-musicalDark">
+<i class="fa-solid fa-circle-exclamation text-musicalPink mt-0.5"></i>
+<span>Es importante que tengas un teclado para las clases virtuales.</span>
+</div>
 </div>
 
 <div class="flex justify-between pt-4">
@@ -300,6 +304,8 @@ const precio = parseInt(planRadio.getAttribute('data-precio')).toLocaleString('e
 const mod = document.getElementById('modalidad').value;
 
 datosReserva = { instrumento: inst, plan: planRadio.value, precio, modalidad: mod };
+
+document.getElementById('avisoTeclado').classList.toggle('hidden', mod !== 'Online');
 
 document.getElementById('resumen-texto').innerText = `${inst} • ${planRadio.value} (${mod})`;
 document.getElementById('resumen-precio').innerText = precio;
